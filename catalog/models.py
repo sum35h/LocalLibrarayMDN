@@ -20,7 +20,7 @@ class Book(models.Model):
 
     isbn = models.CharField('ISBN',max_length=13,help_text='Enter the 13 digit ISBN')
 
-    genere = models.ManyToManyField(Genre,help_text='Select a genre for this book')
+    genre = models.ManyToManyField(Genre,help_text='Select a genre for this book')
 
     def __str__(self):
         """String for representing the model object"""
@@ -29,6 +29,12 @@ class Book(models.Model):
     def get_absolute_url(self):
         """Returns the url to access a detail record of this book"""
         return reverse('book-detail',args=[str(self.id)])
+
+    def display_genre(self):
+        """Creates a string for Genre. This is required to display genre in Admin"""
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description ='Genre'
 
 
 class BookInstance(models.Model):
