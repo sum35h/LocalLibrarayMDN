@@ -28,6 +28,7 @@ class BookListView(generic.ListView):
     context_object_name = 'book_list'
     #queryset = Book.objects.filter(title__icontains='the')
     template_name = 'catalog/book_list.html'
+    paginate_by = 2
 
     def get_queryset(self):
         return Book.objects.all()
