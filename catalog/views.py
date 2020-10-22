@@ -20,7 +20,7 @@ def index(request):
         'num_authors':num_authors,
     }
 
-    return render(request,'index.html',context=context)
+    return render(request,'catalog/index.html',context=context)
 
 
 class BookListView(generic.ListView):
@@ -46,3 +46,20 @@ class BookDetailView(generic.DetailView):
     # def get_queryset(self):
     #     book = get_object_or_404(Book,pk=primary_key)
     #     return book
+
+
+class AuthorListView(generic.ListView):
+    model=Author
+    context_object_name = 'author_list'
+    template_name = 'catalog/author_list.html'
+    paginate_by = 2
+
+    def get_queryset(self):
+        return Author.objects.all()
+
+class AuthorDetailView(generic.DetailView):
+    model=Author
+    template_name = 'catalog/author_detail.html'
+    context_object_name = 'author'
+
+  
