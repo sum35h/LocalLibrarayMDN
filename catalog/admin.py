@@ -29,10 +29,10 @@ class BookInstanceAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {'fields':('book','imprint','id')}),
-        ('Availability',{'fields':('status','due_back')})
+        ('Availability',{'fields':('status','due_back','borrower')})
     )
 
-    list_display=('book','status','due_back','id')
+    list_display=('book','status','borrower','due_back','id')
 
 # admin.site.register(Book)
 admin.site.register(Genre)
