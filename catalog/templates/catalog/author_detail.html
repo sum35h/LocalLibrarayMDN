@@ -2,7 +2,12 @@
 
 {% block content %}
   <h1>Author: {{ author.first_name }}  {{ author.last_name }}</h1>
-
+  {% if perms.catalog.can_edit_author %}
+  <a  href="{% url 'author_update' author.id %}"><button>Edit</button></a>
+  {% endif %}
+  {% if perms.catalog.can_edit_author %}
+  <a  href="{% url 'author_delete' author.id %}"><button>Delete</button></a>
+  {% endif %}
   <p><strong>DOB:</strong> {{ author.date_of_birth }}</p>
   <p><strong>DOD:</strong> {{ author.date_of_death }}</p> 
 
